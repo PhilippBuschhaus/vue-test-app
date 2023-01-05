@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <form class="app__form" @submit.prevent="addResolution">
+      <label>
+        New Year's Resolution:
+        <input v-model="newResolution" />
+      </label>
+      <button type="submit">Add Resolution</button>
+    </form>
+    <table class="app__resolutions">
+      <thead>
+        <tr>
+          <th>Resolution</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="resolution in resolutions" :key="resolution">
+          <td>{{ resolution.text }}</td>
+          <td>
+            <input type="checkbox" v-model="resolution.completed" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="button--print" @click="printPage">Print</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      newResolution: '',
+      resolutions: [],
+    };
+  },
+  methods: {
+    addResolution() {
+      this.resolutions.push({ text: this.newResolution, completed: false });
+      this.newResolution = '';
+    },
+    printPage() {
+      window.print();
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
