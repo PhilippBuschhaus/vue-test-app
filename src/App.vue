@@ -2,7 +2,8 @@
   <div class="app">
     <form class="app__form" @submit.prevent="addResolution">
       <label>
-        New Year's Resolution:
+        <h1>New Year's Resolution Creator!</h1>
+        <p>Add your resolutions here:</p>
         <input v-model="newResolution" />
       </label>
       <button type="submit">Add Resolution</button>
