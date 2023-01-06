@@ -78,11 +78,6 @@
   .app__resolutions td {
     text-align: left;
   }
-  
-  .app__resolutions td[v-bind:completed="true"] {
-    text-decoration: line-through;
-    color: #ccc;
-  }
 
 .button--print {
   margin-top: 20px;
